@@ -5,7 +5,9 @@ import BookShelf from './BookShelf'
 
 class BookList extends Component {
   render() {
-    console.log(this.props.books)
+    const books = this.props.books
+    console.log(books)
+    const shelves = Object.keys(books)
     return(
       <div className="list-books">
         <div className="list-books-title">
@@ -13,7 +15,18 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf/>
+
+            {shelves.map(shelf => (
+              <div key={shelf}>
+                <BookShelf
+                  books={books[shelf]}
+                />
+              </div>
+            ))}
+
+
+
+
           </div>
         </div>
         <div className="open-search">

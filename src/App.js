@@ -32,7 +32,7 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path="/" render={() => (
           <BookList
-            books={this.state.books}
+            books={this.state}
           />
         )}/>
         <Route exact path="/search" render={() => (
