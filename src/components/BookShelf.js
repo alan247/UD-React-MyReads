@@ -4,9 +4,13 @@ import BookItem from './BookItem'
 
 class BookShelf extends Component {
   render() {
+
+		const formatTitle = (string) => {
+			return string.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase() )
+		}
+
     const books = this.props.books
-    const shelfName = this.props.shelfName
-    console.log(books)
+    const shelfName = formatTitle(this.props.shelfName)
 
     return(
 			<div className="bookshelf">
