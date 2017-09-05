@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 
 class BookList extends Component {
+  static propTypes = {
+    books: PropTypes.object.isRequired
+  }
+
   render() {
     const books = this.props.books
     const shelves = Object.keys(books)

@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 
 class BookItem extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    authors: PropTypes.array.isRequired,
+    thumbnail: PropTypes.string.isRequired
+  }
+
   render() {
 		const title = this.props.title
 		const authors = this.props.authors
