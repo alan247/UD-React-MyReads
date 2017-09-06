@@ -27,16 +27,23 @@ class BooksApp extends Component {
     })
   }
 
+
+
+
   render() {
     return (
+
       <div className="app">
         <Route exact path="/" render={() => (
           <LibraryPage
             books={this.state}
           />
         )}/>
+
         <Route exact path="/search" render={() => (
-          <SearchPage/>
+          <SearchPage
+            books={this.state}
+          />
         )}/>
       </div>
     )

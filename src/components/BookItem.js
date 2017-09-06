@@ -6,18 +6,18 @@ class BookItem extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     authors: PropTypes.array.isRequired,
-    thumbnail: PropTypes.string.isRequired
+    imageLinks: PropTypes.object
   }
 
   render() {
 		const title = this.props.title
 		const authors = this.props.authors
-		const thumbnail = this.props.thumbnail
+		const imageLinks = this.props.imageLinks
 
     return(
 			<div className="book">
 	      <div className="book-top">
-	        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${thumbnail}")` }}></div>
+	        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks && this.props.imageLinks.thumbnail})` }}></div>
 	        <div className="book-shelf-changer">
 	          <select>
 	            <option value="none" disabled>Move to...</option>

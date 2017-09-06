@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
 
-class BookList extends Component {
+class LibraryPage extends Component {
   static propTypes = {
     books: PropTypes.object.isRequired
   }
@@ -37,4 +37,4 @@ class BookList extends Component {
   }
 }
 
-export default BookList
+export default LibraryPage
