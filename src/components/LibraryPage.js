@@ -6,12 +6,14 @@ import BookShelf from './BookShelf'
 
 class LibraryPage extends Component {
   static propTypes = {
-    books: PropTypes.object.isRequired
+    books: PropTypes.object.isRequired,
+    onSetShelf: PropTypes.func.isRequired
   }
 
   render() {
     const books = this.props.books
     const shelves = Object.keys(books)
+    const setShelf = this.props.onSetShelf
     return(
       <div className="list-books">
         <div className="list-books-title">
@@ -21,8 +23,9 @@ class LibraryPage extends Component {
           {shelves.map(shelf => (
             <div key={shelf}>
               <BookShelf
-                books={books[shelf]}
-                shelfName={shelf}
+                books={ books[shelf] }
+                shelfName={ shelf }
+                onSetShelf={ setShelf }
               />
             </div>
           ))}

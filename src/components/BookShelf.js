@@ -5,7 +5,8 @@ import BookItem from './BookItem'
 class BookShelf extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-		shelfName: PropTypes.string.isRequired
+		shelfName: PropTypes.string.isRequired,
+    onSetShelf: PropTypes.func.isRequired
   }
 
   render() {
@@ -13,6 +14,7 @@ class BookShelf extends Component {
 
     const books = this.props.books
     const shelfName = formatTitle(this.props.shelfName)
+    const setShelf = this.props.onSetShelf
 
     return(
 			<div className="bookshelf">
@@ -23,9 +25,8 @@ class BookShelf extends Component {
 						{books.map(book => (
 	            <li key={book.id}>
 	              <BookItem
-	              	title={book.title}
-	              	authors={book.authors}
-	              	imageLinks={book.imageLinks}
+	              	book={ book }
+                	onSetShelf={ setShelf }
 	              />
 	            </li>
 	          ))}
