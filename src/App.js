@@ -31,7 +31,6 @@ class BooksApp extends Component {
   setShelf = (book, shelf) => {
     const shelves = Object.keys(this.state)
 
-
     // Remove from current shelf
     for(const shelfName of shelves) {
       if(this.state[shelfName].includes(book)) {
@@ -39,8 +38,6 @@ class BooksApp extends Component {
         // book.shelf = shelfName
         const newShelf = this.state[shelfName].filter((item) => book !== item)
 
-        console.log(book)
-        console.log(shelf)
         this.setState(
           {[shelfName]: newShelf },
           () => {BooksAPI.update(book, shelf)
@@ -49,10 +46,13 @@ class BooksApp extends Component {
       }
     }
 
+
     // Place it in the new shelf
-    this.setState({
-      [shelf]: [...this.state[shelf], book]
-    })
+    if(shelf !== 'none') {
+      this.setState({
+        [shelf]: [...this.state[shelf], book]
+      })
+    }
 
 
   }
@@ -64,14 +64,13 @@ class BooksApp extends Component {
       <div className="app">
         <Route exact path="/" render={() => (
           <LibraryPage
-            books={this.state}
+            library={this.state}
             onSetShelf={this.setShelf}
           />
         )}/>
 
         <Route exact path="/search" render={() => (
           <SearchPage
-            books={this.state}
             onSetShelf={this.setShelf}
           />
         )}/>

@@ -6,13 +6,15 @@ class BookItem extends Component {
   static propTypes = {
     imageLinks: PropTypes.object,
     onSetShelf: PropTypes.func.isRequired,
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    library: PropTypes.object.isRequired
   }
 
   render() {
 		const setShelf = this.props.onSetShelf
 		const book = this.props.book
-		const shelf = this.props.book.shelf
+		let shelf = this.props.book.shelf
+		const library = this.props.library
 
     return(
 			<div className="book">
@@ -20,7 +22,9 @@ class BookItem extends Component {
 	        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks && book.imageLinks.thumbnail})` }}></div>
 	        <div className="book-shelf-changer">
 	          <select
-							onChange={() => setShelf(book, this.select.value)}
+							onChange={() => {
+								setShelf(book, this.select.value)
+							}}
 							ref={select => this.select = select}
 							value={ shelf }
 	          >

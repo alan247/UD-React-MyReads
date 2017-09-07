@@ -7,7 +7,6 @@ import BookItem from './BookItem'
 
 class SearchPage extends Component {
   static propTypes = {
-    books: PropTypes.object.isRequired,
     onSetShelf: PropTypes.func.isRequired
   }
 
@@ -41,7 +40,6 @@ class SearchPage extends Component {
 
 
   render() {
-    // const books = this.props.books
     const setShelf = this.props.onSetShelf
 
     return(
