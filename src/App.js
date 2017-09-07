@@ -22,7 +22,6 @@ class BooksApp extends Component {
         for(const name of stateNames) {
           stateObj[name] = books.filter((item) => item.shelf === name)
         }
-
         this.setState(stateObj)
     })
   }
@@ -34,10 +33,7 @@ class BooksApp extends Component {
     // Remove from current shelf
     for(const shelfName of shelves) {
       if(this.state[shelfName].includes(book)) {
-        // Update
-        // book.shelf = shelfName
         const newShelf = this.state[shelfName].filter((item) => book !== item)
-
         this.setState(
           {[shelfName]: newShelf },
           () => {BooksAPI.update(book, shelf)
@@ -46,21 +42,16 @@ class BooksApp extends Component {
       }
     }
 
-
-    // Place it in the new shelf
     if(shelf !== 'none') {
       this.setState({
         [shelf]: [...this.state[shelf], book]
       })
     }
-
-
   }
 
 
   render() {
     return (
-
       <div className="app">
         <Route exact path="/" render={() => (
           <LibraryPage
@@ -71,13 +62,14 @@ class BooksApp extends Component {
 
         <Route exact path="/search" render={() => (
           <SearchPage
+            library={this.state}
             onSetShelf={this.setShelf}
           />
         )}/>
       </div>
     )
   }
-
 }
+
 
 export default BooksApp

@@ -34,7 +34,6 @@ class LibraryPage extends Component {
                   {library[shelf].map(book => (
                     <li key={book.id}>
                       <BookItem
-                        library={ this.props.library }
                         book={ book }
                         shelf={ shelf }
                         onSetShelf={ setShelf }
@@ -45,18 +44,6 @@ class LibraryPage extends Component {
                 </ol>
               </div>
             </div>
-
-
-
-
-
-            // <div key={shelf}>
-            //   <BookShelf
-            //     books={ books[shelf] }
-            //     shelfName={ shelf }
-            //     onSetShelf={ setShelf }
-            //   />
-            // </div>
           ))}
         </div>
         <div className="open-search">

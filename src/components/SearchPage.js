@@ -18,9 +18,23 @@ class SearchPage extends Component {
 
 
   searchBooks = (query) => {
+    const library = this.props.library
+    const shelves = Object.keys(library)
+
     if (query){
       BooksAPI.search(query, 20).then((searchResults) => {
         if (!searchResults.error) {
+
+          // Set current shelf if result book is in library
+          for(const item of searchResults) {
+            for(const shelf of shelves) {
+              for(const book of library[shelf]){
+                if(item.id === book.id){
+                  item.shelf = shelf
+                }
+              }
+            }
+          }
           this.setState({ searchResults })
         } else {
           this.setState({ searchResults: []})
@@ -64,6 +78,8 @@ class SearchPage extends Component {
                 <BookItem
                   book={ book }
                   onSetShelf={ setShelf }
+                  shelf={ book.shelf }
+                  searchPage={ true }
                 />
               </li>
             ))}

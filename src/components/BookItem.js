@@ -6,15 +6,14 @@ class BookItem extends Component {
   static propTypes = {
     imageLinks: PropTypes.object,
     onSetShelf: PropTypes.func.isRequired,
-    book: PropTypes.object.isRequired,
-    library: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired
   }
 
   render() {
 		const setShelf = this.props.onSetShelf
 		const book = this.props.book
 		const shelf = this.props.shelf
-		const library = this.props.library
+		const searchPage = this.props.searchPage
 
     return(
 			<div className="book">
@@ -28,11 +27,13 @@ class BookItem extends Component {
 							ref={select => this.select = select}
 							value={ shelf }
 	          >
-	            <option value="none" disabled>Move to...</option>
+	            <option value="none" disabled={ (!searchPage) ? true : false }>Move to...</option>
 	            <option value="currentlyReading">Currently Reading</option>
 	            <option value="wantToRead">Want to Read</option>
 	            <option value="read">Read</option>
-	            <option value="none">None</option>
+	            { !searchPage &&
+    						<option value="none">Remove</option>
+    					}
 	          </select>
 	        </div>
 	      </div>
