@@ -36,6 +36,7 @@ class LibraryPage extends Component {
                       <BookItem
                         library={ this.props.library }
                         book={ book }
+                        shelf={ shelf }
                         onSetShelf={ setShelf }
                       />
                     </li>

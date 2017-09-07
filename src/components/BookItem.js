@@ -13,7 +13,7 @@ class BookItem extends Component {
   render() {
 		const setShelf = this.props.onSetShelf
 		const book = this.props.book
-		let shelf = this.props.book.shelf
+		const shelf = this.props.shelf
 		const library = this.props.library
 
     return(
