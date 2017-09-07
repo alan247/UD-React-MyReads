@@ -31,27 +31,29 @@ class BooksApp extends Component {
   setShelf = (book, shelf) => {
     const shelves = Object.keys(this.state)
 
+
     // Remove from current shelf
-    for(const shelfItem of shelves) {
-      if(this.state[shelfItem].includes(book)) {
-        const newShelf = this.state[shelfItem].filter((item) => book !== item)
-        this.setState({ [shelfItem]: newShelf })
+    for(const shelfName of shelves) {
+      if(this.state[shelfName].includes(book)) {
+        // Update
+        // book.shelf = shelfName
+        const newShelf = this.state[shelfName].filter((item) => book !== item)
+
+        console.log(book)
+        console.log(shelf)
+        this.setState(
+          {[shelfName]: newShelf },
+          () => {BooksAPI.update(book, shelf)
+            .then(r => console.log('Updated', r))}
+        )
       }
     }
-
-
-    // Is it already in the right shelf
-
-    // Remove it from the old shelf (if applicable)
-
-
 
     // Place it in the new shelf
     this.setState({
       [shelf]: [...this.state[shelf], book]
     })
 
-    book.shelf = shelf
 
   }
 
